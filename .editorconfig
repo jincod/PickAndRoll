@@ -1,0 +1,16 @@
+root = true
+
+[*]
+indent_style = space
+
+# Code files
+[*.{cs,csx}]
+indent_size = 4
+
+# Xml project files
+[*.{csproj}]
+indent_size = 2
+
+# JSON files
+[*.json]
+indent_size = 2
