@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Cake.Core;
 using Cake.Core.Annotations;
+using Cake.Core.Diagnostics;
 using PickAndRoll.Models;
 
 namespace Cake.PickAndRoll
@@ -42,16 +43,25 @@ namespace Cake.PickAndRoll
         {
             if (context == null) throw new ArgumentNullException(nameof(context));
 
-            var pickAndRoll = new global::PickAndRoll.PickAndRoll();
-
-            pickAndRoll.Go(new PickAndRollSettings
+            try
             {
-                ConfigFileName = configFileName,
-                ParConfigFileName = parConfigFileName,
-                ExtraConfigsPath = extraConfigFiles,
-                Files = files,
-                Pwd = pwd
-            });
+                var pickAndRoll = new global::PickAndRoll.PickAndRoll();
+
+                pickAndRoll.Go(new PickAndRollSettings
+                {
+                    ConfigFileName = configFileName,
+                    ParConfigFileName = parConfigFileName,
+                    ExtraConfigsPath = extraConfigFiles,
+                    Files = files,
+                    Pwd = pwd
+                });
+            }
+            catch (Exception e)
+            {
+                context.Log.Error(e.Message);
+                context.Log.Error(e.StackTrace);
+                throw;
+            }
         }
     }
 }
