@@ -28,6 +28,7 @@ namespace Cake.PickAndRoll
         /// <param name="files">Custom file list for processing</param>
         /// <param name="parConfigFileName">Custom parconfig filename</param>
         /// <param name="configFileName">Custom config filename</param>
+        /// <param name="extraConfigFiles">Extra config filenames</param>
         /// <param name="pwd">Custom working directory. Default current</param>
         [CakeMethodAlias]
         public static void PickAndRoll(
@@ -35,6 +36,7 @@ namespace Cake.PickAndRoll
             IEnumerable<string> files = null,
             string parConfigFileName = null,
             string configFileName = null,
+            IEnumerable<string> extraConfigFiles = null,
             string pwd = null
         )
         {
@@ -46,6 +48,7 @@ namespace Cake.PickAndRoll
             {
                 ConfigFileName = configFileName,
                 ParConfigFileName = parConfigFileName,
+                ExtraConfigsPath = extraConfigFiles,
                 Files = files,
                 Pwd = pwd
             });

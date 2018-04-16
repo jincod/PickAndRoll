@@ -54,6 +54,12 @@ namespace PickAndRoll
             if (!string.IsNullOrEmpty(config.CustomConfigPath) && File.Exists(config.CustomConfigPath))
                 result.Merge(JObject.Parse(File.ReadAllText(config.CustomConfigPath)));
 
+            foreach (var extraConfigPath in config.ExtraConfigsPath)
+            {
+                if (!string.IsNullOrEmpty(extraConfigPath) && File.Exists(extraConfigPath))
+                    result.Merge(JObject.Parse(File.ReadAllText(extraConfigPath)));
+            }
+
             return result;
         }
 
@@ -83,6 +89,7 @@ namespace PickAndRoll
             return new PickAndRollConfig
             {
                 FilePatterns = parConfig.Files.Select(f => Path.GetFullPath(Path.Combine(pwd, f))),
+                ExtraConfigsPath = settings.ExtraConfigsPath.Select(f => Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, f))),
                 MasterConfigPath = Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, "config.json")),
                 CustomConfigPath = Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, customConfigFileName))
             };
