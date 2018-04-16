@@ -21,13 +21,10 @@ namespace PickAndRoll
         {
             var flatConfig = FlatConfig(extendedConfig);
 
-            //Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(flatConfig));
-
             foreach (var filename in filePatterns)
             {
                 var content = File.ReadAllText(filename);
                 var rolledFileName = Regex.Replace(filename, ".generic", string.Empty, RegexOptions.IgnoreCase);
-                //Console.WriteLine($"Roll file: {filename}");
                 var newContent = RollFile(flatConfig, content);
                 File.WriteAllText(rolledFileName, newContent);
             }
@@ -83,13 +80,14 @@ namespace PickAndRoll
             var parConfigFileName =
                 Path.GetFullPath(Path.Combine(pwd, settings.ParConfigFileName ?? ".parconfig"));
 
-            var parConfig = GetParConfig(parConfigFileName, settings.Files ?? new string[]{});
+            var parConfig = GetParConfig(parConfigFileName, settings.Files ?? new string[] { });
             var customConfigFileName = $"{settings.ConfigFileName ?? Environment.MachineName}.json";
 
             return new PickAndRollConfig
             {
                 FilePatterns = parConfig.Files.Select(f => Path.GetFullPath(Path.Combine(pwd, f))),
-                ExtraConfigsPath = settings.ExtraConfigsPath.Select(f => Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, f))),
+                ExtraConfigsPath =
+                    settings.ExtraConfigsPath.Select(f => Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, f))),
                 MasterConfigPath = Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, "config.json")),
                 CustomConfigPath = Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, customConfigFileName))
             };
