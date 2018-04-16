@@ -37,25 +37,29 @@ namespace PickAndRoll
 
         private static string RollFile(Dictionary<string, object> config, string content)
         {
-            return config.Aggregate(content,
-                (result, item) => Regex.Replace(result, $"@@{item.Key}@@", $"{item.Value}", RegexOptions.IgnoreCase));
+            string ReplaceKey(string result, KeyValuePair<string, object> item)
+            {
+                return Regex.Replace(result, $"@@{item.Key}@@", $"{item.Value}", RegexOptions.IgnoreCase);
+            }
+
+            return config.Aggregate(content, ReplaceKey);
         }
 
         private static JObject Pick(PickAndRollConfig config)
         {
             var result = new JObject();
 
-            if (!string.IsNullOrEmpty(config.MasterConfigPath) && File.Exists(config.MasterConfigPath))
-                result.Merge(JObject.Parse(File.ReadAllText(config.MasterConfigPath)));
+            var files = config.ExtraConfigsPath
+                .Concat(new[]
+                {
+                    config.MasterConfigPath,
+                    config.CustomConfigPath
+                })
+                .Where(f => !string.IsNullOrEmpty(f))
+                .Where(File.Exists);
 
-            if (!string.IsNullOrEmpty(config.CustomConfigPath) && File.Exists(config.CustomConfigPath))
-                result.Merge(JObject.Parse(File.ReadAllText(config.CustomConfigPath)));
 
-            foreach (var extraConfigPath in config.ExtraConfigsPath)
-            {
-                if (!string.IsNullOrEmpty(extraConfigPath) && File.Exists(extraConfigPath))
-                    result.Merge(JObject.Parse(File.ReadAllText(extraConfigPath)));
-            }
+            foreach (var extraConfigPath in files) result.Merge(JObject.Parse(File.ReadAllText(extraConfigPath)));
 
             return result;
         }
