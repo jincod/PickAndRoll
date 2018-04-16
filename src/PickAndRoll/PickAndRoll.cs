@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.Scripting;
 using Newtonsoft.Json.Linq;
 using PickAndRoll.Models;
 
@@ -37,9 +39,22 @@ namespace PickAndRoll
 
         private static string RollFile(Dictionary<string, object> config, string content)
         {
+            string ExecuteExpression(string input)
+            {
+                var result = CSharpScript.EvaluateAsync(input, ScriptOptions.Default.WithImports("System"));
+
+                return result.Result.ToString();
+            }
+
             string ReplaceKey(string result, KeyValuePair<string, object> item)
             {
-                return Regex.Replace(result, $"@@{item.Key}@@", $"{item.Value}", RegexOptions.IgnoreCase);
+                var match = Regex.Match(item.Value.ToString(), "{{#(.*)}}");
+
+                var value = match.Success
+                    ? ExecuteExpression(match.Groups[1].Value)
+                    : $"{item.Value}";
+
+                return Regex.Replace(result, $"@@{item.Key}@@", value, RegexOptions.IgnoreCase);
             }
 
             return config.Aggregate(content, ReplaceKey);
