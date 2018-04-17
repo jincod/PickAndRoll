@@ -45,7 +45,8 @@ namespace Cake.PickAndRoll
 
             try
             {
-                var pickAndRoll = new global::PickAndRoll.PickAndRoll();
+                void Logger(string message) => context.Log.Information(message);
+                var pickAndRoll = new global::PickAndRoll.PickAndRoll(Logger);
 
                 pickAndRoll.Go(new PickAndRollSettings
                 {

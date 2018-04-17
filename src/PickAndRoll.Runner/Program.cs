@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using PickAndRoll.Models;
 
@@ -7,10 +8,11 @@ namespace PickAndRoll.Runner
     {
         private static void Main(string[] args)
         {
-            new PickAndRoll().Go(new PickAndRollSettings
-            {
-                Pwd = Path.GetFullPath(args[0])
-            });
+            new PickAndRoll(Console.WriteLine)
+                .Go(new PickAndRollSettings
+                {
+                    Pwd = Path.GetFullPath(args[0])
+                });
         }
     }
 }

@@ -12,6 +12,13 @@ namespace PickAndRoll
 {
     public class PickAndRoll
     {
+        private readonly Action<string> _logger;
+
+        public PickAndRoll(Action<string> logger = null)
+        {
+            _logger = logger ?? (message => { });
+        }
+
         public void Go(PickAndRollSettings settings = null)
         {
             var config = ConfigProcess(settings);
@@ -19,7 +26,7 @@ namespace PickAndRoll
             Roll(config.FilePatterns, extendedConfig);
         }
 
-        private static void Roll(IEnumerable<string> filePatterns, JObject extendedConfig)
+        private void Roll(IEnumerable<string> filePatterns, JObject extendedConfig)
         {
             var flatConfig = FlatConfig(extendedConfig);
 
@@ -27,17 +34,21 @@ namespace PickAndRoll
             {
                 var content = File.ReadAllText(filename);
                 var rolledFileName = Regex.Replace(filename, ".generic", string.Empty, RegexOptions.IgnoreCase);
+
+                _logger($"Roll file {rolledFileName}");
+
                 var newContent = RollFile(flatConfig, content);
+
                 File.WriteAllText(rolledFileName, newContent);
             }
         }
 
-        private static Dictionary<string, object> FlatConfig(JObject extendedConfig)
+        private Dictionary<string, object> FlatConfig(JObject extendedConfig)
         {
             return JsonHelper.DeserializeAndFlatten(extendedConfig);
         }
 
-        private static string RollFile(Dictionary<string, object> config, string content)
+        private string RollFile(Dictionary<string, object> config, string content)
         {
             string ExecuteExpression(string input)
             {
@@ -60,7 +71,7 @@ namespace PickAndRoll
             return config.Aggregate(content, ReplaceKey);
         }
 
-        private static JObject Pick(PickAndRollConfig config)
+        private JObject Pick(PickAndRollConfig config)
         {
             var result = new JObject();
 
@@ -74,7 +85,12 @@ namespace PickAndRoll
                 .Where(File.Exists);
 
 
-            foreach (var extraConfigPath in files) result.Merge(JObject.Parse(File.ReadAllText(extraConfigPath)));
+            foreach (var extraConfigPath in files)
+            {
+                _logger($"Pick file {extraConfigPath}");
+
+                result.Merge(JObject.Parse(File.ReadAllText(extraConfigPath)));
+            }
 
             return result;
         }
