@@ -1,0 +1,6 @@
+{
+  "web": {
+    "key1": "value",
+    "timestamp": "{{#DateTimeOffset.UtcNow.ToUnixTimeSeconds()}}"
+  }
+}
