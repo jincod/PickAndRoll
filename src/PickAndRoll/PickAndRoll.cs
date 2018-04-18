@@ -109,11 +109,11 @@ namespace PickAndRoll
             var filePatterns = parConfig.Files
                 .Select(f => Path.GetFullPath(Path.Combine(pwd, f)))
                 .Where(File.Exists);
-            var customConfigFileName = $"{settings.ConfigFileName ?? Environment.MachineName}.json";
+            var customConfigFileName = settings.ConfigFileName ?? Environment.MachineName;
 
             var configFileNames = new[]
                 {
-                    "config.json",
+                    "config",
                     customConfigFileName
                 }.Union(settings.ExtraConfigsPath ?? new string[] { })
                 .Select(f => Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, $"{f}.json")))
