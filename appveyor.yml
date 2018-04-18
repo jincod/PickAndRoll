@@ -1,0 +1,12 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+
+build_script:
+  - dotnet build
+
+deploy_script:
+  - bash script\deploy.sh
+
+branches:
+  only:
+    - master
