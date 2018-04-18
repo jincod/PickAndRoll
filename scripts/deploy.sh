@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 project_file=src/Cake.PickAndRoll/Cake.PickAndRoll.csproj
 
 package_version=$(cat $project_file | grep -oP '<PackageVersion>(.*)<\/PackageVersion>' | sed "s/<PackageVersion>\|<\/PackageVersion>//g")
@@ -10,6 +12,6 @@ if [ $status_code = 200 ]; then
 else
     echo "publish..."
     # pack
-    dotnet pack $project_file --configuration Release --output $pwd
+    dotnet pack $project_file --configuration Release --output "${PWD}"
     dotnet nuget push *.nupkg -k $NUGET_API_KEY -s https://www.nuget.org/api/v2/package
 fi
