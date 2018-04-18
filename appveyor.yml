@@ -4,8 +4,12 @@ image: Visual Studio 2017
 build_script:
   - dotnet build
 
+environment:
+  NUGET_API_KEY:
+    secure: 0QRcrLmvuSmZgWchRscyCm1btgQQVQPUhM5MWJ3CERMi60yZ2zMqbMx2tnkFqgT9
+
 deploy_script:
-  - bash script\deploy.sh
+  - bash scripts\deploy.sh
 
 branches:
   only:
