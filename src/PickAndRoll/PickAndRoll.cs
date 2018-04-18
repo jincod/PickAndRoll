@@ -75,17 +75,7 @@ namespace PickAndRoll
         {
             var result = new JObject();
 
-            var files = config.ExtraConfigsPath
-                .Concat(new[]
-                {
-                    config.MasterConfigPath,
-                    config.CustomConfigPath
-                })
-                .Where(f => !string.IsNullOrEmpty(f))
-                .Where(File.Exists);
-
-
-            foreach (var extraConfigPath in files)
+            foreach (var extraConfigPath in config.ConfigFileNames)
             {
                 _logger($"Pick file {extraConfigPath}");
 
@@ -116,20 +106,24 @@ namespace PickAndRoll
                 Path.GetFullPath(Path.Combine(pwd, settings.ParConfigFileName ?? ".parconfig"));
 
             var parConfig = GetParConfig(parConfigFileName, settings.Files ?? new string[] { });
-            var extraConfigsPath = settings.ExtraConfigsPath != null
-                ? settings.ExtraConfigsPath.Select(f => Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, $"{f}.json")))
-                : new string[] { };
             var filePatterns = parConfig.Files
                 .Select(f => Path.GetFullPath(Path.Combine(pwd, f)))
                 .Where(File.Exists);
             var customConfigFileName = $"{settings.ConfigFileName ?? Environment.MachineName}.json";
 
+            var configFileNames = new[]
+                {
+                    "config.json",
+                    customConfigFileName
+                }.Union(settings.ExtraConfigsPath ?? new string[] { })
+                .Select(f => Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, $"{f}.json")))
+                .Where(f => !string.IsNullOrEmpty(f))
+                .Where(File.Exists);
+
             return new PickAndRollConfig
             {
                 FilePatterns = filePatterns,
-                ExtraConfigsPath = extraConfigsPath,
-                MasterConfigPath = Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, "config.json")),
-                CustomConfigPath = Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, customConfigFileName))
+                ConfigFileNames = configFileNames
             };
         }
     }
