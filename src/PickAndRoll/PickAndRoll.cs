@@ -117,7 +117,7 @@ namespace PickAndRoll
 
             var parConfig = GetParConfig(parConfigFileName, settings.Files ?? new string[] { });
             var extraConfigsPath = settings.ExtraConfigsPath != null
-                ? settings.ExtraConfigsPath.Select(f => Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, f)))
+                ? settings.ExtraConfigsPath.Select(f => Path.GetFullPath(Path.Combine(pwd, parConfig.CustomDir, $"{f}.json")))
                 : new string[] { };
             var filePatterns = parConfig.Files
                 .Select(f => Path.GetFullPath(Path.Combine(pwd, f)))
