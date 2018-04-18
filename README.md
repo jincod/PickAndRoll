@@ -5,7 +5,6 @@
 
 Cake Addin for working with PickAndRoll
 
-
 ## Usage
 
 ```csharp
