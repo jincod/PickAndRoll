@@ -5,7 +5,7 @@
 
   <PropertyGroup>
     <PackageId>Cake.PickAndRoll</PackageId>
-    <PackageVersion>0.1.8-alpha</PackageVersion>
+    <PackageVersion>0.1.9-alpha</PackageVersion>
     <Authors>jincod</Authors>
     <Description>Keep environment specific attributes in separate configuration files and build desired config on demand.</Description>
     <PackageLicenseUrl>http://www.opensource.org/licenses/mit-license.php</PackageLicenseUrl>
@@ -17,8 +17,6 @@
 
   <ItemGroup>
     <PackageReference Include="Cake.Core" Version="0.26.1" PrivateAssets="All" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.7.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +33,210 @@
       <BuildAction>None</BuildAction>
       <PackagePath>lib\netstandard2.0\</PackagePath>
     </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\Newtonsoft.Json.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\Newtonsoft.Json.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+
+    <!-- More hacks -->
+
+    <_PackageFiles Include="$(OutputPath)\net46\Microsoft.CodeAnalysis.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\Microsoft.CodeAnalysis.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\Microsoft.CodeAnalysis.CSharp.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\Microsoft.CodeAnalysis.CSharp.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\Microsoft.CodeAnalysis.CSharp.Scripting.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\Microsoft.CodeAnalysis.CSharp.Scripting.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\Microsoft.CodeAnalysis.Scripting.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\Microsoft.CodeAnalysis.Scripting.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.AppContext.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.AppContext.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Collections.Immutable.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Collections.Immutable.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Console.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Console.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Diagnostics.FileVersionInfo.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Diagnostics.FileVersionInfo.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Diagnostics.StackTrace.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Diagnostics.StackTrace.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.IO.Compression.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.IO.Compression.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.IO.FileSystem.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.IO.FileSystem.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.IO.FileSystem.Primitives.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.IO.FileSystem.Primitives.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Reflection.Metadata.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Reflection.Metadata.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Security.Cryptography.Algorithms.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Security.Cryptography.Algorithms.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Security.Cryptography.Encoding.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Security.Cryptography.Encoding.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Security.Cryptography.Primitives.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Security.Cryptography.Primitives.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Security.Cryptography.X509Certificates.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Security.Cryptography.X509Certificates.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Text.Encoding.CodePages.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Text.Encoding.CodePages.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Threading.Thread.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Threading.Thread.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.ValueTuple.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.ValueTuple.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Xml.ReaderWriter.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Xml.ReaderWriter.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Xml.XmlDocument.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Xml.XmlDocument.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Xml.XPath.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Xml.XPath.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Xml.XPath.XDocument.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\net46\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)\net46\System.Xml.XPath.XDocument.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </_PackageFiles>
+
   </ItemGroup>
 
 </Project>
