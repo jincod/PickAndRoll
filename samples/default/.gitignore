@@ -1,2 +1,3 @@
-tools
+tools/**
+!tools/packages.config
 build.ps1
