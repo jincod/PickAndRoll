@@ -109,7 +109,9 @@ namespace PickAndRoll
             var filePatterns = parConfig.Files
                 .Select(f => Path.GetFullPath(Path.Combine(pwd, f)))
                 .Where(File.Exists);
-            var customConfigFileName = settings.ConfigFileName ?? Environment.MachineName;
+            var customConfigFileName = string.IsNullOrEmpty(settings.ConfigFileName)
+                ? Environment.MachineName
+                : settings.ConfigFileName;
 
             var configFileNames = new[]
                 {
