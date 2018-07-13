@@ -8,7 +8,7 @@ Cake Addin for working with PickAndRoll
 ## Usage
 
 ```csharp
-#addin "Cake.PickAndRoll"
+#addin nuget:?package=Cake.PickAndRoll&version=1.1.0&loaddependencies=true
 
 Task("Default")
     .Does(() => {
