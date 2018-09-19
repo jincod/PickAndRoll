@@ -65,7 +65,7 @@ namespace PickAndRoll
                     ? ExecuteExpression(match.Groups[1].Value)
                     : $"{item.Value}";
 
-                return Regex.Replace(result, $"@@{item.Key}@@", value, RegexOptions.IgnoreCase);
+                return Regex.Replace(result, $"@@{item.Key}@@", x => value, RegexOptions.IgnoreCase);
             }
 
             return config.Aggregate(content, ReplaceKey);
