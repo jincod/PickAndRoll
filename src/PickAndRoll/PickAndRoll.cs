@@ -61,11 +61,17 @@ namespace PickAndRoll
             {
                 var match = Regex.Match(item.Value.ToString(), "{{#(.*)}}");
 
-                var value = match.Success
-                    ? ExecuteExpression(match.Groups[1].Value)
-                    : $"{item.Value}";
-
-                return Regex.Replace(result, $"@@{item.Key}@@", x => value, RegexOptions.IgnoreCase);
+                try
+                {
+                    var value = match.Success
+                        ? ExecuteExpression(match.Groups[1].Value)
+                        : $"{item.Value}";
+                    return Regex.Replace(result, $"@@{item.Key}@@", x => value, RegexOptions.IgnoreCase);
+                }
+                catch (Exception e)
+                {
+                    throw new InvalidOperationException($"Can't replace key '{item.Key}': {e.Message}", e);
+                }
             }
 
             return config.Aggregate(content, ReplaceKey);
