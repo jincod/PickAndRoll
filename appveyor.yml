@@ -10,8 +10,10 @@ environment:
     secure: M8kSq/XBFS6NriAu52f+ISNKzkmJVLjjOJw3P6+ShNaqnHcte4rAF4n5ijfFZ1Wa
 
 deploy_script:
-  - bash scripts\deploy.sh
+  - bash scripts/deploy.sh src/Cake.PickAndRoll/Cake.PickAndRoll.csproj
 
-branches:
-  only:
-    - master
+artifacts:
+  - path: '*.nupkg'
+
+after_build:
+  - ps: Get-ChildItem .\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
