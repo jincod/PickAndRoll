@@ -15,5 +15,5 @@ deploy_script:
 artifacts:
   - path: '*.nupkg'
 
-after_build:
-  - ps: Get-ChildItem .\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+after_deploy:
+  - ps: Get-ChildItem *.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
