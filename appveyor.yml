@@ -1,12 +1,13 @@
 version: 1.0.{build}
-image: Visual Studio 2017
+
+image: ubuntu
 
 build_script:
   - dotnet build
 
 environment:
   NUGET_API_KEY:
-    secure: 0QRcrLmvuSmZgWchRscyCm1btgQQVQPUhM5MWJ3CERMi60yZ2zMqbMx2tnkFqgT9
+    secure: M8kSq/XBFS6NriAu52f+ISNKzkmJVLjjOJw3P6+ShNaqnHcte4rAF4n5ijfFZ1Wa
 
 deploy_script:
   - bash scripts\deploy.sh
